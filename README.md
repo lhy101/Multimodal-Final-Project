@@ -6,7 +6,7 @@
 This is the final project of the course "Multimodal Learning" from Peking University.
 
 In this project, we reproduce the results in the paper "Text-Only Training for Image Captioning using Noise-Injected CLIP" and enhance its performance.
-The link of the code of origin paper is [here](https://github.com/DavidHuji/CapDec).
+The link towards the repository of the original paper is [here](https://github.com/DavidHuji/CapDec).
 
 - `Code` is our implementation based on the original CapDec. Don't forget to `cd Code` before starting!
 - `visualization` lists some graphs and results of our experiments, which are also contained in our report.
