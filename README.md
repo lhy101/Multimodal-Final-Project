@@ -6,7 +6,7 @@
 This is the final project of the course "Multimodal Learning" from Peking University.
 
 <p align="center">
-<img src=visualization/CLIP + CapDec.png />
+<img src=visualization/readme.png />
 </p>
 
 In this project, we reproduce the results in the paper "Text-Only Training for Image Captioning using Noise-Injected CLIP" and enhance its performance.
