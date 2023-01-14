@@ -25,28 +25,31 @@ conda activate CapDec
 
 ## Prepare Text-only Data
 
-You can download the COCO dataset using the following link: [COCO](https://www.kaggle.com/datasets/shtvkumar/karpathy-splits). Note that it only consits of the captions in COCO. You can parse the COCO dataset using parse_karpathy.py, which we have already done.
-
-If you want to repeat the parsing process, don't forget to edit the dataset path in parse_karpathy.py to your own. 
+You can download the COCO dataset using the following link: [COCO](https://www.kaggle.com/datasets/shtvkumar/karpathy-splits). Note that it only consits of the captions in COCO. You can parse the COCO dataset using parse_karpathy.py, which we have already done. If you want to repeat the parsing process, don't forget to edit the dataset path in parse_karpathy.py to your own. 
 ```
 python parse_karpathy.py
 ```
 
 ## Training
 
-There are loads of training methods, which we have elaborated in our `Multimodal Final Project Report.pdf`. We highly recommend you to read our report firstly.
+There are loads of training methods, which we have elaborated in our `Multimodal Final Project Report.pdf`. We highly recommend you to read our report first.
 
-If you only want to try the text-only training methods, you don't need to download the images of the COCO training set. Otherwise, you need to download them and move them to `Code/data/coco/train2014`, from which we can extract these images.
+Since one of our methods (auxiliary training) need partial images from COCO training set, you need to download the images of the COCO training set and move them to `Code/data/coco/train2014`, from which we can extract these images.
 ```
 wget http://images.cocodataset.org/zips/train2014.zip
 ```
 
-
+Then, you can run `embeddings_generator.py` to generate the CLIP embeddings of the text as well as the images. It will take a well.
 
 ```
-python embeddings_generator.py  --clip_model_type RN50  --dataset_mode 0
-python train.py --data clip_embeddings_of_last_stage.pkl --out_dir ./coco_train/ --noise_variance 0.016
+python embeddings_generator.py
 ```
+
+### Training $N(0, 0.016)$
+```
+python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016
+```
+
 ## Evaluation
 
 Download the picture of coco dataset into data/coco
