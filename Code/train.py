@@ -503,7 +503,7 @@ def main():
     parser.add_argument('--cuda', default=0, help='cuda number')
     parser.add_argument('--begin_epoch', type=int, default=0, help='number of epoch to begin')
     parser.add_argument('--uniform_noise', dest='uniform_noise', action='store_true', default=False, help='Optimize method 1: Use uniform noise instead of gaussian')
-    parser.add_argument('--modality_offset_trainable', dest='modality_offset_trainable', action='store_true', default=False, help='Optimize method 1.5: t and gaussian noise')
+    parser.add_argument('--modality_offset_trainable', dest='modality_offset_trainable', action='store_true', default=False, help='Optimize method 1.5: Trainable gaussian noise')
     parser.add_argument('--not_text_only', dest='not_text_only', action='store_true', default=False, help='Optimize method 2: Use partial image to train the model')
     parser.add_argument('--adv', dest='adv', action='store_true', default=False, help='Optimize method 3: Adversarial training')
     parser.add_argument('--turns', type=int, default=1, help='Optimize method 3.5: Multiple noise per prefix')
