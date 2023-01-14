@@ -105,4 +105,4 @@ cd coco-caption
 python evaluation.py  --res ./results/res.json  --outpath data_res/res.txt
 ```
 
-If you want to check many checkpoints at the same time, you can copy the `evaluate.sh` into the corresponding folder, and change the path in it before running.
+If you want to check many checkpoints at the same time, you can copy the `evaluate.sh` into the corresponding folder, change the path in it and run.
