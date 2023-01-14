@@ -15,7 +15,7 @@ The link of the code of origin paper is [here](https://github.com/DavidHuji/CapD
 - `details.docx` has some personal analysis towards the original code of the paper.
 - `pre.pptx` is our slices of the presentation.
 
-## Environment configuration
+## Environment Configuration
 ```
 git clone https://github.com/lhy101/Multimodal-Final-Project.git 
 cd Multimodal-Final-Project/Code
@@ -39,15 +39,32 @@ Since one of our methods (auxiliary training) need partial images from COCO trai
 wget http://images.cocodataset.org/zips/train2014.zip
 ```
 
-Then, you can run `embeddings_generator.py` to generate the CLIP embeddings of the text as well as the images. It will take a well.
+Then, you can run `embeddings_generator.py` to generate the CLIP embeddings of the text as well as the images. It will take a long time even if you have a GPU. Thus, we highly recommend you to download the CLIP embeddings from [here](https://pan.baidu.com/s/1Fq40LnUS4Q-WW7WPdjyTFQ?pwd=0115), using password `0115`. You need to move the four `.pkl` documents to `Code/data/coco`, from which we can successfully extract them.
 
 ```
 python embeddings_generator.py
 ```
 
+
 ### Training $N(0, 0.016)$
+This is the reproduction of the original model, which has the best performance in the paper. We set it as a baseline.
 ```
 python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016
+```
+### Training $N(0, 0.016) w/o norm$
+For every following models, you can add `--dont_norm` to train the model without using the normalizing trick before noise injection step. For instance, you can train the model below.
+```
+python train.py --data COCO --dont_norm --out_dir ./coco_train/ --noise_variance 0.016
+```
+
+### Training $U(0, 0.016)$
+```
+python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016 --uniform_noise
+```
+
+### Training Models with Learnable Mean
+```
+python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016 --uniform_noise
 ```
 
 ## Evaluation
