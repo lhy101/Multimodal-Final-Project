@@ -36,4 +36,4 @@ get the metric score
 cd coco-caption
 python evaluation.py  --res ./results/res.json  --outpath data_res/res.txt
 ```
-if you want to check many checkpoints at the same time you can copy the evaluate.sh into the folder ,change the path in it and run the evaluate.sh
+if you want to evaluate many results at the same time you can copy the evaluate.sh into the folder ,change the path in it and run the evaluate.sh
