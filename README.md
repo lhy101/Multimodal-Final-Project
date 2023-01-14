@@ -1,8 +1,13 @@
 # Multimodal-Final-Project
+
+
 ## Introduction
 This is the final project of the course "Multimodal Learning" from Peking University.
+
 In this project, we reproduce the results in the paper "Text-Only Training for Image Captioning using Noise-Injected CLIP" and enhance its performance.
-The link of the code of origin paper is [here](https://github.com/DavidHuji/CapDec)
+The link of the code of origin paper is [here](https://github.com/DavidHuji/CapDec).
+
+
 ## Environment configuration
 ```
 git clone https://github.com/DavidHuji/CapDec && cd CapDec #TODO replace with our git link
