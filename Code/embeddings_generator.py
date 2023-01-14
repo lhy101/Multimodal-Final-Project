@@ -11,7 +11,7 @@ import argparse, math
 # dave conf
 # ~~~~~~~~~
 add_text_embedding = True
-device = torch.device('cuda:4')
+device = torch.device('cuda:0')
 
 # constants
 # first line man, second woman, each column has the same form of gender. e.g. wife-husband, girl-boy etc.
