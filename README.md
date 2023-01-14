@@ -83,6 +83,7 @@ The model trained in this method employs adversarial sampling instead of noise i
 python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016 --adv
 ```
 
+### Checkpoints
 **Note** that we have provided loads of trained models in [here](https://pan.baidu.com/s/1JpqBQ0pwuOjBxzAeKBTSeA?pwd=0115), using the password `0115`. We don't recommend you to train the models in your local environment. It cost around 20 hours to train a single model on a `NVIDIA TITAN RTX` GPU.
 
 ## Evaluation
