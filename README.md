@@ -2,25 +2,38 @@
 
 
 ## Introduction
+
 This is the final project of the course "Multimodal Learning" from Peking University.
 
 In this project, we reproduce the results in the paper "Text-Only Training for Image Captioning using Noise-Injected CLIP" and enhance its performance.
 The link of the code of origin paper is [here](https://github.com/DavidHuji/CapDec).
 
+- `Code` is our implementation based on the original CapDec. Don't forget to `cd Code` before starting!
+- `visualization` lists some graphs and results of our experiments, which are also contained in our report.
+- `Multimodal Final Project Report.pdf` is our report written by Latex.
+- `paper.pdf` is the original paper.
+- `details.docx` has some personal analysis towards the original code of the paper.
+- `pre.pptx' is our slices of the presentation.
 
 ## Environment configuration
 ```
-git clone https://github.com/DavidHuji/CapDec && cd CapDec #TODO replace with our git link
+git clone https://github.com/lhy101/Multimodal-Final-Project.git 
+cd Multimodal-Final-Project/Code
 conda env create -f others/environment.yml
 conda activate CapDec
 ```
+
 ## Prepare Data
-Download the datasets using the following links: [COCO](https://www.kaggle.com/datasets/shtvkumar/karpathy-splits)
-edit the parse_karpathy.py with datasets path
+
+You can download the COCO dataset using the following link: [COCO](https://www.kaggle.com/datasets/shtvkumar/karpathy-splits). Note that it only consits of the captions in COCO. You can parse the COCO dataset using parse_karpathy.py, which we have already done.
+
+If you want to repeat the parsing process, don't forget to edit the dataset path in parse_karpathy.py to your own. 
 ```
 python parse_karpathy.py
 ```
+
 ## Training
+
 ```
 python embeddings_generator.py  --clip_model_type RN50  --dataset_mode 0
 python train.py --data clip_embeddings_of_last_stage.pkl --out_dir ./coco_train/ --noise_variance 0.016
