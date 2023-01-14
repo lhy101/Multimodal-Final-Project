@@ -47,26 +47,26 @@ There are loads of training methods, which we have elaborated in our `Multimodal
 python train.py --help
 ```
 
-### Training $N(0, 0.016)$ Models
-This is the reproduction of the original model, which has the best performance in the paper. We set it as a baseline. And you can also adjust the variance of the noise by changing the `--noise_variance` setting.
+### Training Models with Gaussian Noise Injection
+The reproduction of the original models in the paper. You can adjust the variance of the Gaussian noise by changing the `--noise_variance` setting. Lets's take $N(0, 0.016)$ for example, which has the best performance. 
 ```
 python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016
 ```
 
-### Training Models (w/o norm) 
+### Training Models w/o Normalizing
 For every models, you can add `--dont_norm` to train the model without using the normalizing trick before noise injection step. For instance, you can train the model below.
 ```
 python train.py --data COCO --dont_norm --out_dir ./coco_train/ --noise_variance 0.016
 ```
 
-### Training $U(0, 0.016)$ Models
-You can replace the Gaussian noise with the uniform noise.
+### Training Models with Uniform Noise Injection
+You can replace the Gaussian noise with the uniform noise. Let's take $U(0, 0.016)$ for example.
 ```
 python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016 --uniform_noise
 ```
 
-### Training Learnable Mean Models
-You can train the $N(shift, 0.016)$ model by the following command.
+### Training Models with Learnable Mean
+You can train the $N(shift, 0.016)$ model by the following command. Here `shift` is the learnable mean of the Gaussian noise.
 ```
 python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016 --modality_offset_trainable
 ```
@@ -78,12 +78,12 @@ python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016 --not
 ```
 
 ### Adversarial Training
-This method employs adversarial sampling instead of noise injection on CLIP embeddings. For more details of this method, please refer to our report.
+The model trained in this method employs adversarial sampling instead of noise injection on CLIP embeddings. For more details of this method, please refer to our report.
 ```
 python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016 --adv
 ```
 
-**Note** that we have provided loads of trained models in [here](https://pan.baidu.com/s/1JpqBQ0pwuOjBxzAeKBTSeA?pwd=0115), using the password `0115`. We don't recommend you to train the models at your local environment. It cost around 20 hours to train a single model on a `NVIDIA TITAN RTX` GPU.
+**Note** that we have provided loads of trained models in [here](https://pan.baidu.com/s/1JpqBQ0pwuOjBxzAeKBTSeA?pwd=0115), using the password `0115`. We don't recommend you to train the models in your local environment. It cost around 20 hours to train a single model on a `NVIDIA TITAN RTX` GPU.
 
 ## Evaluation
 
