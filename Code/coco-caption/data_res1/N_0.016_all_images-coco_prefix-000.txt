@@ -1,0 +1,7 @@
+Bleu_1: 0.716
+Bleu_2: 0.549
+Bleu_3: 0.413
+Bleu_4: 0.314
+METEOR: 0.274
+ROUGE_L: 0.548
+CIDEr: 1.058
