@@ -32,55 +32,74 @@ python parse_karpathy.py
 
 ## Training
 
-There are loads of training methods, which we have elaborated in our `Multimodal Final Project Report.pdf`. We highly recommend you to read our report first.
-
-Since one of our methods (auxiliary training) need partial images from COCO training set, you need to download the images of the COCO training set and move them to `Code/data/coco/train2014`, from which we can extract these images.
+Since one of our methods (auxiliary training) need partial images from COCO training set, you need to download the images of the COCO training set first and move them to `Code/data/coco/train2014`, from which we can extract these images.
 ```
 wget http://images.cocodataset.org/zips/train2014.zip
 ```
 
-Then, you can run `embeddings_generator.py` to generate the CLIP embeddings of the text as well as the images. It will take a long time even if you have a GPU. Thus, we highly recommend you to download the CLIP embeddings from [here](https://pan.baidu.com/s/1Fq40LnUS4Q-WW7WPdjyTFQ?pwd=0115), using password `0115`. You need to move the four `.pkl` documents to `Code/data/coco`, from which we can successfully extract them.
-
+Then, you can run `embeddings_generator.py` to generate the CLIP embeddings of the text as well as the images. It will take a long time even if you have a GPU. Thus, we highly recommend you to download the CLIP embeddings from [here](https://pan.baidu.com/s/1Fq40LnUS4Q-WW7WPdjyTFQ?pwd=0115), using the password `0115`. You need to move the four `.pkl` documents to `Code/data/coco`, from which we can successfully extract them.
 ```
 python embeddings_generator.py
 ```
 
+There are loads of training methods, which we have elaborated in our `Multimodal Final Project Report.pdf`. We highly recommend you to read our report first. And then, you can use `--help` to further see the details of our proposals.
+```
+python train.py --help
+```
 
-### Training $N(0, 0.016)$
-This is the reproduction of the original model, which has the best performance in the paper. We set it as a baseline.
+### Training $N(0, 0.016)$ Models
+This is the reproduction of the original model, which has the best performance in the paper. We set it as a baseline. And you can also adjust the variance of the noise by changing the `--noise_variance` setting.
 ```
 python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016
 ```
-### Training $N(0, 0.016) w/o norm$
-For every following models, you can add `--dont_norm` to train the model without using the normalizing trick before noise injection step. For instance, you can train the model below.
+
+### Training `w/o norm` Models
+For every models, you can add `--dont_norm` to train the model without using the normalizing trick before noise injection step. For instance, you can train the model below.
 ```
 python train.py --data COCO --dont_norm --out_dir ./coco_train/ --noise_variance 0.016
 ```
 
-### Training $U(0, 0.016)$
+### Training $U(0, 0.016)$ Models
+You can replace the Gaussian noise with the uniform noise.
 ```
 python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016 --uniform_noise
 ```
 
-### Training Models with Learnable Mean
+### Training Learnable Mean Models
+You can train the $N(shift, 0.016)$ model by the following command.
 ```
-python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016 --uniform_noise
+python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016 --modality_offset_trainable
+```
+
+### Training Not-text-only Models
+You can change the `text_image_rate` in `train.py`. For more details of this method, please refer to our report.
+```
+python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016 --not_text_only
+```
+
+### Training 'adv' Models
+This method employs adversarial sampling instead of noise injection on CLIP embeddings.
+```
+python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016 --adv
 ```
 
 ## Evaluation
 
-Download the picture of coco dataset into data/coco
+You need to download the images of the COCO validation dataset, and `unzip` it to `Code/data/coco/val2014` first.
 ```
 wget http://images.cocodataset.org/zips/val2014.zip
 ```
-Get the inference result
+
+You can get the inference result using `predictions_runner.py`.
 ```
 python predictions_runner.py  --checkpoint path_to_checkpoints.pt --dataset_mode 0
 ```
-If you want to check many checkpoints at the same time you can copy the test.sh into the folder ,change the path in it and run the test.sh
-get the metric score
+
+If you want to check many checkpoints at the same time, you can copy the `test.sh` into the folder, change the path in it and run the `test.sh` to
+get the score of different metrics. Or you can just simply run the commands.
 ```
 cd coco-caption
 python evaluation.py  --res ./results/res.json  --outpath data_res/res.txt
 ```
-If you want to check many checkpoints at the same time you can copy the evaluate.sh into the folder ,change the path in it and run the evaluate.sh
+
+If you want to check many checkpoints at the same time, you can copy the `evaluate.sh` into the folder, change the path in it and run the `evaluate.sh`.
