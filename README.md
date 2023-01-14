@@ -13,7 +13,7 @@ The link of the code of origin paper is [here](https://github.com/DavidHuji/CapD
 - `Multimodal Final Project Report.pdf` is our report written by Latex.
 - `paper.pdf` is the original paper.
 - `details.docx` has some personal analysis towards the original code of the paper.
-- `pre.pptx' is our slices of the presentation.
+- `pre.pptx` is our slices of the presentation.
 
 ## Environment configuration
 ```
@@ -23,7 +23,7 @@ conda env create -f others/environment.yml
 conda activate CapDec
 ```
 
-## Prepare Data
+## Prepare Text-only Data
 
 You can download the COCO dataset using the following link: [COCO](https://www.kaggle.com/datasets/shtvkumar/karpathy-splits). Note that it only consits of the captions in COCO. You can parse the COCO dataset using parse_karpathy.py, which we have already done.
 
@@ -33,6 +33,15 @@ python parse_karpathy.py
 ```
 
 ## Training
+
+There are loads of training methods, which we have elaborated in our `Multimodal Final Project Report.pdf`. We highly recommend you to read our report firstly.
+
+If you only want to try the text-only training methods, you don't need to download the images of the COCO training set. Otherwise, you need to download them and move them to `Code/data/coco/train2014`, from which we can extract these images.
+```
+wget http://images.cocodataset.org/zips/train2014.zip
+```
+
+
 
 ```
 python embeddings_generator.py  --clip_model_type RN50  --dataset_mode 0
