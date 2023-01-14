@@ -53,7 +53,7 @@ This is the reproduction of the original model, which has the best performance i
 python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016
 ```
 
-### Training `w/o norm` Models
+### Training Models (w/o norm) 
 For every models, you can add `--dont_norm` to train the model without using the normalizing trick before noise injection step. For instance, you can train the model below.
 ```
 python train.py --data COCO --dont_norm --out_dir ./coco_train/ --noise_variance 0.016
@@ -71,17 +71,19 @@ You can train the $N(shift, 0.016)$ model by the following command.
 python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016 --modality_offset_trainable
 ```
 
-### Training Not-text-only Models
-You can change the `text_image_rate` in `train.py`. For more details of this method, please refer to our report.
+### Auxiliary Training
+We use partial images from COCO training set to assist the original process of text-only training. You can change the `text_image_rate` in `train.py` to adjust the text-to-image ratio.
 ```
 python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016 --not_text_only
 ```
 
-### Training 'adv' Models
-This method employs adversarial sampling instead of noise injection on CLIP embeddings.
+### Adversarial Training
+This method employs adversarial sampling instead of noise injection on CLIP embeddings. For more details of this method, please refer to our report.
 ```
 python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016 --adv
 ```
+
+**Note** that we have provided loads of trained models in [here](https://pan.baidu.com/s/1JpqBQ0pwuOjBxzAeKBTSeA?pwd=0115), using the password `0115`. We don't recommend you to train the models at your local environment. It cost around 20 hours to train a single model on a `NVIDIA TITAN RTX` GPU.
 
 ## Evaluation
 
@@ -96,10 +98,10 @@ python predictions_runner.py  --checkpoint path_to_checkpoints.pt --dataset_mode
 ```
 
 If you want to check many checkpoints at the same time, you can copy the `test.sh` into the folder, change the path in it and run the `test.sh` to
-get the score of different metrics. Or you can just simply run the commands.
+get the score of different metrics. Or you can just simply run the following commands.
 ```
 cd coco-caption
 python evaluation.py  --res ./results/res.json  --outpath data_res/res.txt
 ```
 
-If you want to check many checkpoints at the same time, you can copy the `evaluate.sh` into the folder, change the path in it and run the `evaluate.sh`.
+If you want to check many checkpoints at the same time, you can copy the `evaluate.sh` into the corresponding folder, and change the path in it before running.
