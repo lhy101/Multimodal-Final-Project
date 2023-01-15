@@ -97,7 +97,7 @@ You need to download the images of the COCO validation dataset, and `unzip` it t
 wget http://images.cocodataset.org/zips/val2014.zip
 ```
 
-You can get the inference result using `predictions_runner.py`.
+You can get the inference result using `predictions_runner.py`. Note that you need to add `--trainable_noise` if you are testing a model with learnable mean.
 ```
 python predictions_runner.py  --checkpoint path_to_checkpoints.pt --dataset_mode 0
 ```
