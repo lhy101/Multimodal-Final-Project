@@ -89,8 +89,10 @@ python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016 --adv
 
 ### Checkpoints
 **Note** that we have provided loads of trained models in [here](https://pan.baidu.com/s/1JpqBQ0pwuOjBxzAeKBTSeA?pwd=0115), using the password `0115`. We don't recommend you to train the models in your local environment. It cost around 20 hours to train a single model on a `NVIDIA TITAN RTX` GPU.
+
+Here lists the performance of some checkpoints.
 | Methods                        | BLEU\_1 | Bleu\_2 | Bleu\_3 | Bleu\_4 | METEOR | ROUGE\_L | CIDEr |
-|--------------------------------|---------|---------|---------|---------|--------|----------|-------|
+|:------------------------------:|:-------:|:-------:|:-------:|:-------:|:------:|:--------:|:-----:|
 | **Baseline:** $N(0, 0.016)$    | 0.684   | 0.506   | 0.365   | 0.264   | 0.250  | 0.511    | 0.903 |
 | $N(0, 0.016)$ w/o norm         | 0.478   | 0.273   | 0.152   | 0.083   | 0.165  | 0.352    | 0.352 |
 | $U(0, \sqrt{0.01})$ w/o norm   | 0.402   | 0.203   | 0.100   | 0.049   | 0.135  | 0.300    | 0.202 |
