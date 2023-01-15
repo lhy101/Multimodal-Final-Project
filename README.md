@@ -89,6 +89,24 @@ python train.py --data COCO --out_dir ./coco_train/ --noise_variance 0.016 --adv
 
 ### Checkpoints
 **Note** that we have provided loads of trained models in [here](https://pan.baidu.com/s/1JpqBQ0pwuOjBxzAeKBTSeA?pwd=0115), using the password `0115`. We don't recommend you to train the models in your local environment. It cost around 20 hours to train a single model on a `NVIDIA TITAN RTX` GPU.
+| Methods                        | BLEU\_1 | Bleu\_2 | Bleu\_3 | Bleu\_4 | METEOR | ROUGE\_L | CIDEr |
+|--------------------------------|---------|---------|---------|---------|--------|----------|-------|
+| extbf{Baseline:} $N(0, 0.016)$ | 0.684   | 0.506   | 0.365   | 0.264   | 0.250  | 0.511    | 0.903 |
+| $N(0, 0.016)$ w/o norm         | 0.478   | 0.273   | 0.152   | 0.083   | 0.165  | 0.352    | 0.352 |
+| $U(0, \sqrt{0.01})$ w/o norm   | 0.402   | 0.203   | 0.100   | 0.049   | 0.135  | 0.300    | 0.202 |
+| $U(0, \sqrt{0.049})$ w/o norm  | 0.413   | 0.208   | 0.102   | 0.049   | 0.141  | 0.313    | 0.208 |
+| $U(0, \sqrt{0.001})$           | 0.353   | 0.170   | 0.080   | 0.039   | 0.125  | 0.282    | 0.154 |
+| $U(0, \sqrt{0.016})$           | 0.681   | 0.506   | 0.368   | 0.268   | 0.250  | 0.511    | 0.910 |
+| $U(0, \sqrt{0.1})$             | 0.391   | 0.204   | 0.106   | 0.055   | 0.138  | 0.308    | 0.218 |
+| Trainable Mean w/o norm        | 0.506   | 0.317   | 0.195   | 0.118   | 0.190  | 0.391    | 0.442 |
+| Trainable Mean                 | 0.679   | 0.505   | 0.368   | 0.268   | 0.253  | 0.514    | 0.915 |
+| Not Text Only (4:1) w/o norm   | 0.718   | 0.552   | 0.415   | 0.311   | 0.274  | 0.548    | 1.058 |
+| Not Text Only (4:1)            | 0.712   | 0.546   | 0.411   | 0.311   | 0.274  | 0.546    | 1.049 |
+| Not Text Only (1:1) w/o norm   | 0.719   | 0.549   | 0.411   | 0.309   | 0.271  | 0.546    | 1.044 |
+| All Images w/o norm            | 0.716   | 0.549   | 0.413   | 0.314   | 0.274  | 0.548    | 1.058 |
+| Adv w/o norm                   | 0.163   | 0.098   | 0.041   | 0.020   | 0.088  | 0.205    | 0.059 |
+| Adv                            | 0.525   | 0.335   | 0.213   | 0.136   | 0.183  | 0.407    | 0.465 |
+
 
 ## Evaluation
 
